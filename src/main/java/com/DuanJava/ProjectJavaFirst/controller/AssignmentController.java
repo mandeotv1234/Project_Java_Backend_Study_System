@@ -33,7 +33,7 @@ public class AssignmentController {
     }
 
     // ✅ Xem chi tiết bài tập
-    @GetMapping("/{assignmentId}")
+    @GetMapping("/course/detail/{assignmentId}")
     public ResponseEntity<AssignmentDTO> getAssignmentDetail(@PathVariable Long assignmentId) {
         AssignmentDTO assignment = assignmentService.getAssignmentById(assignmentId);
         return ResponseEntity.ok(assignment);

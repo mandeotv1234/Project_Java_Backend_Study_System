@@ -24,6 +24,12 @@ public class ApiResponse {
         this.result = result;
     }
 
+    public ApiResponse(int code, String message) { // ✅ Thêm constructor 3 tham số
+        this.code = code;
+        this.message = message;
+        this.result = null;
+    }
+
     // Getters và Setters
     public int getCode() {
         return code;

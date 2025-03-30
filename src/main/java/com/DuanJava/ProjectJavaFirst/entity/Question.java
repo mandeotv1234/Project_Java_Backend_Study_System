@@ -1,5 +1,6 @@
 package com.DuanJava.ProjectJavaFirst.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -22,5 +23,6 @@ public class Question {
 
     @ManyToOne
     @JoinColumn(name = "quiz_id", nullable = false)
+    @JsonIgnore // Ngăn vòng lặp khi serialize
     private Quiz quiz;
 }

@@ -68,4 +68,9 @@ public class CourseService {
     public Optional<Course> getCourseById(Long id) {
         return courseRepository.findById(id);
     }
+
+    // ✅ Lấy danh sách khóa học của giáo viên theo ID
+    public List<Course> getCoursesByTeacher(Long teacherId) {
+        return courseRepository.findByTeacherId(teacherId);
+    }
 }

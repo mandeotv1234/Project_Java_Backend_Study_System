@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
-
 @RestController
 @RequestMapping("/api/courses")
 @RequiredArgsConstructor
@@ -25,6 +24,13 @@ public class CourseController {
     @GetMapping("/view")
     public ResponseEntity<List<Course>> getAllCourses() {
         return ResponseEntity.ok(courseService.getAllCourses());
+    }
+
+    // ✅ Lấy danh sách khóa học của giáo viên hiện tại
+    @GetMapping("/teacher")
+    public ResponseEntity<List<Course>> getCoursesByTeacher(@AuthenticationPrincipal User teacher) {
+        List<Course> courses = courseService.getCoursesByTeacher(teacher.getId());
+        return ResponseEntity.ok(courses);
     }
 
     // ✅ Lấy thông tin khóa học theo ID

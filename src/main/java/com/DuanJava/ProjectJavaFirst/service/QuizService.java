@@ -10,11 +10,21 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 public class QuizService {
     private final QuizRepository quizRepository;
     private final CourseRepository courseRepository;
+
+    public List<Quiz> getAllQuizzesByCourseId(Long courseId) {
+        Course course = courseRepository.findById(courseId)
+                .orElseThrow(() -> new EntityNotFoundException("Course not found"));
+
+        return quizRepository.findByCourseId(course.getId());
+    }
+
 
     // 🟢 1. Tạo bài kiểm tra mới
     @Transactional

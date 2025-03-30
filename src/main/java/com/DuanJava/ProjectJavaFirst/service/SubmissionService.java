@@ -95,4 +95,12 @@ public class SubmissionService {
                 .studentId(submission.getStudent().getId())
                 .build();
     }
+
+    // ✅ Lấy chi tiết bài nộp theo ID (Không dùng Mapper)
+    public SubmissionDTO getSubmissionById(Long submissionId) {
+        Submission submission = submissionRepository.findById(submissionId)
+                .orElseThrow(() -> new EntityNotFoundException("Submission not found"));
+        return convertToDTO(submission);
+    }
+
 }

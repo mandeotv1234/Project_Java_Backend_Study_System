@@ -10,6 +10,8 @@ import com.DuanJava.ProjectJavaFirst.entity.User;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.function.Function;
 
 @Service
@@ -41,16 +43,22 @@ public class JwtService {
     }
 
 
-    public String generateToken(User user) { // Nhận trực tiếp User entity
-        System.out.println("Received ser: " + secretKey);
+    public String generateToken(User user) {
+        System.out.println("Generating token for user: " + user.getEmail());
+
+        Map<String, Object> claims = new HashMap<>();
+        claims.put("role", user.getRole()); // 🛑 Thêm role vào token
+        claims.put("id", user.getId()); // 🛑 Thêm role vào token
 
         return Jwts.builder()
-                .setSubject(user.getEmail()) // Sử dụng email làm subject
+                .setClaims(claims) // 🛑 Thêm thông tin vào token
+                .setSubject(user.getEmail())
                 .setIssuedAt(new Date(System.currentTimeMillis()))
                 .setExpiration(new Date(System.currentTimeMillis() + 1000 * 60 * 60 * 10)) // 10 giờ
                 .signWith(SignatureAlgorithm.HS256, secretKey)
                 .compact();
     }
+
 
 
     public boolean isTokenValid(String token, User user) {

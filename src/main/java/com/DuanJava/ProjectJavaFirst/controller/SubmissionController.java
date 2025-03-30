@@ -35,9 +35,16 @@ public class SubmissionController {
     }
 
     // ✅ 4. Giảng viên chấm điểm bài nộp
-    @PostMapping("/assign/{submissionId}/grade")
+    @PostMapping("/teacher/{submissionId}/grade")
     public ResponseEntity<SubmissionDTO> gradeSubmission(@PathVariable Long submissionId, @RequestParam Double grade) {
         String teacherEmail = SecurityContextHolder.getContext().getAuthentication().getName();
         return ResponseEntity.ok(submissionService.gradeSubmission(submissionId, grade, teacherEmail));
     }
+
+    // ✅ 5. Lấy chi tiết bài nộp theo ID
+    @GetMapping("/teacher/{submissionId}")
+    public ResponseEntity<SubmissionDTO> getSubmissionById(@PathVariable Long submissionId) {
+        return ResponseEntity.ok(submissionService.getSubmissionById(submissionId));
+    }
+
 }

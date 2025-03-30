@@ -1,5 +1,6 @@
 package com.DuanJava.ProjectJavaFirst.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -21,6 +22,7 @@ public class Quiz {
 
     @ManyToOne
     @JoinColumn(name = "course_id", nullable = false)
+    @JsonIgnore // Ngăn vòng lặp khi serialize
     private Course course;
 
     @OneToMany(mappedBy = "quiz", cascade = CascadeType.ALL, orphanRemoval = true)
