@@ -121,7 +121,7 @@ public class SecurityConfig {
         CorsConfiguration config = new CorsConfiguration();
 
         // Thêm nhiều origin cùng lúc
-        config.setAllowedOrigins(Arrays.asList("https://project-system-study.vercel.app", "http://localhost:5173"));
+        config.setAllowedOrigins(Arrays.asList("https://project-system-study-9dcaly4zf-mandeotvs-projects.vercel.app", "http://localhost:5173"));
 
         config.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS"));
         config.setAllowedHeaders(Arrays.asList("Content-Type", "Authorization"));
